@@ -20,8 +20,7 @@ public class Task {
     private String title;
     private boolean completed;
 
-    public Task(long id, String title) {
-        this.id = id;
+    public Task(String title) {
         this.title = title;
         this.completed = false;
     }
