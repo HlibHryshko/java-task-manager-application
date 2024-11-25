@@ -37,8 +37,14 @@ public class TaskController {
     }
 
     @DeleteMapping("/api/v1/tasks/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         taskEntityService.deleteById(id);
     }
 
+    @PutMapping("/api/v1/tasks/{id}/complete")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void complete(@PathVariable Long id) {
+        taskEntityService.markAsCompleted(id);
+    }
 }
