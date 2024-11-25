@@ -3,6 +3,7 @@ package com.example.jtm.controllers;
 import com.example.jtm.models.dtos.TaskDTO;
 import com.example.jtm.models.entities.Task;
 import com.example.jtm.services.entity.TaskEntityService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class TaskController {
 
     @PostMapping("/api/v1/tasks")
     @ResponseStatus(HttpStatus.CREATED)
-    public TaskDTO.TaskIdRecord create(@RequestBody TaskDTO.TaskCreateRequest request) {
+    public TaskDTO.TaskIdRecord create(@RequestBody @Valid TaskDTO.TaskCreateRequest request) {
 
         Task task = TaskDTO.taskRecordToTask(request);
 

@@ -1,6 +1,8 @@
 package com.example.jtm.models.dtos;
 
 import com.example.jtm.models.entities.Task;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class TaskDTO {
     public static Task taskRecordToTask(TaskCreateRequest request) {
@@ -16,12 +18,19 @@ public class TaskDTO {
     }
 
     public record TaskRecord(
-            Long id,
-            String title,
-            boolean isCompleted
-    ) { }
+            @NotNull Long id,
+            @NotBlank String title,
+            @NotNull boolean isCompleted
+    ) {
+    }
 
-    public record TaskCreateRequest(String title) { }
+    public record TaskCreateRequest(
+            @NotBlank String title
+    ) {
+    }
 
-    public record TaskIdRecord(Long id) { }
+    public record TaskIdRecord(
+            @NotNull Long id
+    ) {
+    }
 }
