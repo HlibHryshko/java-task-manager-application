@@ -4,10 +4,10 @@ import com.example.jtm.models.dtos.TaskDTO;
 import com.example.jtm.models.entities.Task;
 import com.example.jtm.services.entity.TaskEntityService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class TaskController {
@@ -27,4 +27,13 @@ public class TaskController {
                 taskEntityService.create(task).getId()
         );
     }
+
+    @GetMapping("/api/v1/tasks")
+    @ResponseStatus(HttpStatus.OK)
+    public Set<TaskDTO.TaskRecord> getAll() {
+        return taskEntityService.getAll()
+                .stream().map(TaskDTO::taskToTaskRecord)
+                .collect(Collectors.toSet());
+    }
+
 }
