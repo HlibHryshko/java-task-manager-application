@@ -2,6 +2,7 @@ package com.example.jtm.services.entity;
 
 import com.example.jtm.models.entities.Task;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 public class TaskEntityService {
     private final JpaRepository<Task, Long> repository;
 
+    @Autowired
     public TaskEntityService(JpaRepository<Task, Long> repository) {
         this.repository = repository;
     }
@@ -32,9 +34,9 @@ public class TaskEntityService {
     }
 
     @Transactional
-    public Task markAsCompleted(Long id) {
+    public void markAsCompleted(Long id) {
         Task task = repository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
         task.setCompleted(true);
-        return repository.save(task);
+        repository.save(task);
     }
 }

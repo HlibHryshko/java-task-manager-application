@@ -3,6 +3,7 @@ package com.example.jtm.controllers;
 import com.example.jtm.models.dtos.TaskDTO;
 import com.example.jtm.models.entities.Task;
 import com.example.jtm.services.entity.TaskEntityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class TaskController {
     private final TaskEntityService taskEntityService;
 
+    @Autowired
     public TaskController(TaskEntityService taskEntityService) {
         this.taskEntityService = taskEntityService;
     }
