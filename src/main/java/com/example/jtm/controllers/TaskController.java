@@ -36,4 +36,9 @@ public class TaskController {
                 .collect(Collectors.toSet());
     }
 
+    @DeleteMapping("/api/v1/tasks/{id}")
+    public void delete(@PathVariable Long id) {
+        taskEntityService.deleteById(id);
+    }
+
 }
